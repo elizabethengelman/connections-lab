@@ -88,13 +88,6 @@ a:active {
   margin-top: 20%;
 }
 
-.item{
-  grid-column-start: auto;
-  grid-column-end: auto;
-  grid-row-start:auto;
-  grid-row-end: auto;
-}
-
 img {
   width: 80%;
 }
@@ -102,5 +95,4 @@ img {
 .coming-soon {
   background: rgb(2,0,36);
   background: linear-gradient(133deg, rgba(2,0,36,1) 0%, rgba(54,54,79,1) 40%, rgba(0,139,167,1) 100%);
-  
 }
