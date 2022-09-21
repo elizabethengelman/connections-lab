@@ -1,6 +1,3 @@
-// https://www.youtube.com/watch?v=hrJ64jpYb0A
-//https://flaviocopes.com/fix-cannot-use-import-outside-module/
-// https://www.stefanjudis.com/snippets/how-to-import-json-files-in-es-modules/
 const width = 975;
 const height = 610;
 import data from "./data.json" assert { type: "json" };
