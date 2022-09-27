@@ -1,5 +1,4 @@
 window.addEventListener("load", function () {
-  console.log("page is loaded");
   let trees;
   fetch("TREE.csv")
     .then(function (response) {
@@ -10,7 +9,6 @@ window.addEventListener("load", function () {
         header: true,
         dynamicTyping: true,
         complete: function (results) {
-          console.log(results);
           trees = results;
         },
       });
