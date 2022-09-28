@@ -8,10 +8,10 @@ d3.json("./lancaster2.geojson")
     const cityProjection = d3.geoMercator().fitExtent([[margin, margin], [width - margin, height - margin]], streets)
     const cityPathGenerator = d3.geoPath().projection(cityProjection);
    
-    const svg2 = d3.select("body").append("svg").attr("width", width).attr("height", height);
+    const svg = d3.select("body").append("svg").attr("width", width).attr("height", height);
   
     // construct the path elements using the D3 data join
-    svg2.selectAll('path')
+    svg.selectAll('path')
       // data() expects an Array, so make sure to pass the features entry of our FeatureCollection
       .data(streets.features)
       // select all data items that are not represented on the map yet, and add them
