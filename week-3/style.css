@@ -1,0 +1,52 @@
+body {
+	font-family: "Verdana", sans-serif;
+	color: #0f5e2c;
+	margin:0;
+	padding:0;
+	background: rgb(34,195,93);
+  background: linear-gradient(0deg, rgba(34,195,93,0.5382746848739496) 0%, rgba(34,193,195,0.6111038165266107) 100%);
+}
+
+h1{
+	text-align: center;
+	margin-top: 4%;
+	font-size: 4vw;
+}
+
+.container{ 
+	padding-left: 15%;
+	padding-right: 15%;
+}
+
+.row-1 {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	font-size: 12vw;
+}
+ 
+.row-2 {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	font-size: 8vw;
+}
+
+.row-3 {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	font-size: 14vw;
+}
+
+.thought {
+	position: absolute;
+	margin-top: -2%;
+	margin-left: -2%;
+	font-size: 6vw;
+}
+
+.github-link{
+	color: #72abab;
+
+}
