@@ -57,3 +57,11 @@ const treeGroups = treeElements
   );
 treeGroups.append("circle").attr("r", 2);
 
+const zoom = d3.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
+svg.call(zoom);
+
+function zoomed({ transform }) {
+  // console.log(transform);
+  svg.attr("transform", transform);
+  svg.attr("stroke-width", 1 / transform.k);
+}
