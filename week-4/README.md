@@ -107,9 +107,19 @@ The LancasterCounty data structure looks like this:
 
 So, I wondered if I would be able to filter the data on the feature's LTWNSH or RTWNSH property equaling "LANCASTER CITY". o
 
-don't know the differenence between the two 
+don't know the differenence between the two
 
 LTWNSH had 2766
 LTNRSH had 2778
 
 but the different in the mapping btween one or another, or both didnt seem too different (schreenshot)
+
+I am currently using the filtered data for the city projection, and the full street data for the drawing, and get this result:
+![or with trees](./or-with-trees.png)
+
+
+This is what it looks like with the filtered data for both:
+![filter for both](./filtered-for-both.png)
+
+This is what it looks like with the full data for both:
+![full for both](./full-data-for-both.png)
