@@ -1,3 +1,4 @@
+import trees from "./tree.json" assert { type: "json" };
 const margin = 20;
 const width = 975;
 const height = 610;
@@ -41,4 +42,14 @@ d3.json("./LancasterCountyRDCLINE202209.geojson").then(function (data) {
     .attr("fill", "none")
     .attr("stroke", "#000000")
     .attr("stroke-width", "0.5");
+
+  const treeElements = svg.selectAll("g").data(trees).join("g");
+  const treeGroups = treeElements
+    .append("g")
+    .attr(
+      "transform",
+      ({ LONGITUDE, LATITUDE }) =>
+        `translate(${cityProjection([LONGITUDE, LATITUDE]).join(",")})`
+    );
+  treeGroups.append("circle").attr("r", 2);
 });
