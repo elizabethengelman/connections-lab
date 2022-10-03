@@ -1,4 +1,5 @@
-import trees from "./tree.json" assert { type: "json" };
+// import trees from "./tree.json" assert { type: "json" };
+import trees from "./tree-subset.json" assert { type: "json" };
 
 const margin = 20;
 const width = screen.width;
@@ -17,15 +18,13 @@ const filteredData = {
   features: lancasterOr,
 };
 
-const cityProjection = d3
-  .geoMercator()
-  .fitExtent(
-    [
-      [margin, margin],
-      [width - margin, height - margin],
-    ],
-    filteredData
-  );
+const cityProjection = d3.geoMercator().fitExtent(
+  [
+    [margin, margin],
+    [width - margin, height - margin],
+  ],
+  filteredData
+);
 const cityPathGenerator = d3.geoPath().projection(cityProjection);
 
 const svg = d3
@@ -54,14 +53,23 @@ const treeGroups = treeElements
     "transform",
     ({ LONGITUDE, LATITUDE }) =>
       `translate(${cityProjection([LONGITUDE, LATITUDE]).join(",")})`
-  );
+  ).on("click", click);
 treeGroups.append("circle").attr("r", 2);
 
-const zoom = d3.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
-svg.call(zoom);
+// const zoom = d3.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
+// svg.call(zoom);
+
+function click(event, d) {
+  treeGroups
+    .append("text")
+    .attr("dy", "-.50em")
+    .text(function (d) {
+      return d;
+    });
+}
 
 function zoomed({ transform }) {
   // console.log(transform);
-  svg.attr("transform", transform);
-  svg.attr("stroke-width", 1 / transform.k);
+  // svg.attr("transform", transform);
+  // svg.attr("stroke-width", 1 / transform.k);
 }
