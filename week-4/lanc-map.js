@@ -34,17 +34,17 @@ const svg = d3
   .attr("height", height);
 
 // construct the path elements using the D3 data join
-svg
-  .selectAll("path")
-  // data() expects an Array, so make sure to pass the features entry of our FeatureCollection
-  .data(streetData.features)
-  // select all data items that are not represented on the map yet, and add them
-  .enter()
-  .append("path")
-  .attr("d", cityPathGenerator)
-  .attr("fill", "none")
-  .attr("stroke", "#000000")
-  .attr("stroke-width", "0.5");
+// svg
+//   .selectAll("path")
+//   // data() expects an Array, so make sure to pass the features entry of our FeatureCollection
+//   .data(streetData.features)
+//   // select all data items that are not represented on the map yet, and add them
+//   .enter()
+//   .append("path")
+//   .attr("d", cityPathGenerator)
+//   .attr("fill", "none")
+//   .attr("stroke", "#000000")
+//   .attr("stroke-width", "0.5");
 
 const treeElements = svg.selectAll("g").data(trees).join("g");
 const treeGroups = treeElements
@@ -53,19 +53,64 @@ const treeGroups = treeElements
     "transform",
     ({ LONGITUDE, LATITUDE }) =>
       `translate(${cityProjection([LONGITUDE, LATITUDE]).join(",")})`
-  ).on("click", click);
-treeGroups.append("circle").attr("r", 2);
+  );
+treeGroups.append("circle").attr("r", 11).on("click", click);
+
+treeGroups
+  .append("rect")
+  .attr("width", function(d) {
+    return d.SPECIES_CO.length * 10
+  })
+  .attr("height", 30)
+  .attr("stroke", "black")
+  .attr("fill", "white")
+  .attr("class", "treeLabel")
+  .attr("id", function (d) {
+    return "rect-id-" + d.OBJECTID;
+  });
+
+
+treeGroups
+  .append("text")
+  .text(function (d) {
+    return d.SPECIES_CO.split(",").reverse().join(" ");
+  })
+  .attr("dx", 15)
+  .attr("dy", 20)
+  .attr("class", "treeLabel")
+  .attr("id", function (d) {
+    return "text-id-" + d.OBJECTID;
+  });
 
 // const zoom = d3.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
 // svg.call(zoom);
+svg.append("text").text("This is text").attr("x", 20).attr("y", 20);
 
 function click(event, d) {
-  treeGroups
-    .append("text")
-    .attr("dy", "-.50em")
-    .text(function (d) {
-      return d;
-    });
+  console.log("Click!")
+  const x = event.x;
+  const y = event.y;
+  const treeName = d.SPECIES_CO.split(",").reverse().join(" ");
+  resetLabelsToBeHidden();
+  d3.select("#text-id-" + d.OBJECTID).style("opacity", 1);
+  d3.select("#rect-id-" + d.OBJECTID).style("opacity", 1);
+  // svg.append("text").text(treeName).attr("x", x).attr("y", y);
+
+  // svg
+  //   .append("text")
+  //   .attr("x", x)
+  //   .attr("y", y)
+  //   .attr("dy", "-.35em")
+  //   .attr("dx", ".35em")
+  //   .text("HERE");
+  // .text(function (d) {
+  //   return d;
+  // });
+}
+
+function resetLabelsToBeHidden() {
+  d3.selectAll(".treeLabel").style("opacity", 0);
+  console.log("Done resetting")
 }
 
 function zoomed({ transform }) {
