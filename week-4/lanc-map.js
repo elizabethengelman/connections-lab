@@ -56,31 +56,22 @@ const treeGroups = treeElements
   );
 treeGroups.append("circle").attr("r", 11).on("click", click);
 
-treeGroups
-  .append("rect")
-  .attr("width", function(d) {
-    return d.SPECIES_CO.length * 10
-  })
-  .attr("height", 30)
-  .attr("stroke", "black")
-  .attr("fill", "white")
-  .attr("class", "treeLabel")
-  .attr("id", function (d) {
-    return "rect-id-" + d.OBJECTID;
-  });
-
+// treeGroups
+//   .append("rect")
+//   .attr("width", d => d.SPECIES_CO.length * 10)
+//   .attr("height", 30)
+//   .attr("stroke", "black")
+//   .attr("fill", "white")
+//   .attr("class", "treeLabel")
+//   .attr("id", d => "rect-id-" + d.OBJECTID);
 
 treeGroups
   .append("text")
-  .text(function (d) {
-    return d.SPECIES_CO.split(",").reverse().join(" ");
-  })
+  .text(d => d.SPECIES_CO.split(",").reverse().join(" "))
   .attr("dx", 15)
   .attr("dy", 20)
   .attr("class", "treeLabel")
-  .attr("id", function (d) {
-    return "text-id-" + d.OBJECTID;
-  });
+  .attr("id", d => "text-id-" + d.OBJECTID);
 
 // const zoom = d3.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
 // svg.call(zoom);
