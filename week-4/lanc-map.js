@@ -1,5 +1,5 @@
-// import trees from "./tree.json" assert { type: "json" };
-import trees from "./tree-subset.json" assert { type: "json" };
+import trees from "./tree.json" assert { type: "json" };
+// import trees from "./tree-subset.json" assert { type: "json" };
 
 const margin = 20;
 const width = screen.width;
@@ -34,17 +34,17 @@ const svg = d3
   .attr("height", height);
 
 // construct the path elements using the D3 data join
-// svg
-//   .selectAll("path")
-//   // data() expects an Array, so make sure to pass the features entry of our FeatureCollection
-//   .data(streetData.features)
-//   // select all data items that are not represented on the map yet, and add them
-//   .enter()
-//   .append("path")
-//   .attr("d", cityPathGenerator)
-//   .attr("fill", "none")
-//   .attr("stroke", "#000000")
-//   .attr("stroke-width", "0.5");
+svg
+  .selectAll("path")
+  // data() expects an Array, so make sure to pass the features entry of our FeatureCollection
+  .data(streetData.features)
+  // select all data items that are not represented on the map yet, and add them
+  .enter()
+  .append("path")
+  .attr("d", cityPathGenerator)
+  .attr("fill", "none")
+  .attr("stroke", "#000000")
+  .attr("stroke-width", "0.5");
 
 const treeElements = svg.selectAll("g").data(trees).join("g");
 const treeGroups = treeElements.attr(
@@ -55,39 +55,43 @@ const treeGroups = treeElements.attr(
 
 treeGroups
   .append("circle")
-  .attr("r", 11)
+  .attr("r", 3)
   .attr("id", (d) => "circle-id-" + d.OBJECTID)
   .on("click", click);
 
 function resetPreviousSelection() {
-  d3.selectAll(".treeLabel").remove()
+  d3.selectAll(".treeLabel").remove();
 }
 
 function click(event, d) {
-  resetPreviousSelection()
+  resetPreviousSelection();
   const selectedCircle = d3.select("#circle-id-" + d.OBJECTID);
   const circleParent = selectedCircle.select(function () {
     return this.parentNode;
   });
 
-  circleParent.raise()
+  circleParent.raise();
+
+  var treeName = d.SPECIES_CO.split(",").reverse().join(" ").trimStart();
+  circleParent
+    .append("text")
+    .text(treeName)
+    .attr("dx", 15)
+    .attr("dy", -20)
+    .attr("class", "treeLabel")
+    .attr("id", "text-id-" + d.OBJECTID);
 
   circleParent
     .append("rect")
-    .attr("width", 120)
-    .attr("height", 30)
-    .attr("stroke", "black")
     .attr("fill", "white")
+    .attr("x", 15)
+    .attr("y", -40)
+    .attr("rx", 4)
+    .attr("height", 30)
+    .attr("width", 120)
     .attr("class", "treeLabel")
-    .attr("id", (d) => "rect-id-" + d.OBJECTID)
-
-  circleParent
-    .append("text")
-    .text((d) => d.SPECIES_CO.split(",").reverse().join(" "))
-    .attr("dx", 15)
-    .attr("dy", 20)
-    .attr("class", "treeLabel")
-    .attr("id", (d) => "text-id-" + d.OBJECTID)
+    .attr("id", "rect-id-" + d.OBJECTID)
+    .lower();
 }
 
 //

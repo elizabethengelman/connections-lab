@@ -144,4 +144,11 @@ now i am trying to add the text and rect on click, and remove all of the previou
 
 the one piece that i think would have made this all easier was if i could get a div to display... not just a text, cirlce, rect, etc
 if i could have gotten a div to display, i could have hadd changed the background color with css
-but for some reason divs wouldn't display when appened to the g
+but for some reason divs wouldn't display when appened to the g2
+
+
+
+selection.raise!!
+https://riptutorial.com/d3-js/example/18029/svg--the-drawing-order
+
+https://observablehq.com/@rlesser/automatic-getbbox
