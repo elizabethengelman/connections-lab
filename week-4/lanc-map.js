@@ -39,7 +39,7 @@ svg
   .attr("d", cityPathGenerator)
   .attr("fill", "none")
   .attr("stroke", "#632a00")
-  .attr("stroke-width", "0.5");
+  .attr("stroke-width", "1");
 
 const treeElements = svg.selectAll("g").data(trees).join("g");
 const treeGroups = treeElements.attr(
