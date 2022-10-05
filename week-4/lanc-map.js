@@ -47,31 +47,34 @@ const svg = d3
 //   .attr("stroke-width", "0.5");
 
 const treeElements = svg.selectAll("g").data(trees).join("g");
-const treeGroups = treeElements
-  .attr(
-    "transform",
-    ({ LONGITUDE, LATITUDE }) =>
-      `translate(${cityProjection([LONGITUDE, LATITUDE]).join(",")})`
-  )
+const treeGroups = treeElements.attr(
+  "transform",
+  ({ LONGITUDE, LATITUDE }) =>
+    `translate(${cityProjection([LONGITUDE, LATITUDE]).join(",")})`
+);
+
+// treeGroups
+//   .append("rect")
+//   .attr("width", 120)
+//   .attr("height", 30)
+//   .attr("stroke", "black")
+//   .attr("fill", "white")
+//   .attr("class", "treeLabel")
+//   .attr("id", (d) => "rect-id-" + d.OBJECTID);
+
+// treeGroups
+//   .append("text")
+//   .text((d) => d.SPECIES_CO.split(",").reverse().join(" "))
+//   .attr("dx", 15)
+//   .attr("dy", 20)
+//   .attr("class", "treeLabel")
+//   .attr("id", (d) => "text-id-" + d.OBJECTID);
 
 treeGroups
-  .append("rect")
-  .attr("width", 120)
-  .attr("height", 30)
-  .attr("stroke", "black")
-  .attr("fill", "white")
-  .attr("class", "treeLabel")
-  .attr("id", (d) => "rect-id-" + d.OBJECTID);
-
-treeGroups
-  .append("text")
-  .text((d) => d.SPECIES_CO.split(",").reverse().join(" "))
-  .attr("dx", 15)
-  .attr("dy", 20)
-  .attr("class", "treeLabel")
-  .attr("id", (d) => "text-id-" + d.OBJECTID);
-
-treeGroups.append("circle").attr("r", 11).on("click", click);
+  .append("circle")
+  .attr("r", 11)
+  .attr("id", (d) => "circle-id-" + d.OBJECTID)
+  .on("click", click);
 
 // treeGroups
 //   .append("rect")
@@ -85,29 +88,32 @@ treeGroups.append("circle").attr("r", 11).on("click", click);
 // const zoom = d3.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
 // svg.call(zoom);
 
-function click(event, d) {
-  console.log("Click!");
-  const treeName = d.SPECIES_CO.split(",").reverse().join(" ");
-  resetLabelsToBeHidden();
-  d3.select("#text-id-" + d.OBJECTID).style("opacity", 1);
-  d3.select("#rect-id-" + d.OBJECTID).style("opacity", 1);
-  // svg.append("text").text(treeName).attr("x", x).attr("y", y);
-
-  // svg
-  //   .append("text")
-  //   .attr("x", x)
-  //   .attr("y", y)
-  //   .attr("dy", "-.35em")
-  //   .attr("dx", ".35em")
-  //   .text("HERE");
-  // .text(function (d) {
-  //   return d;
-  // });
+function resetPreviousSelection() {
+  d3.selectAll(".treeLabel").remove()
 }
 
-function resetLabelsToBeHidden() {
-  d3.selectAll(".treeLabel").style("opacity", 0);
-  console.log("Done resetting");
+function click(event, d) {
+  resetPreviousSelection()
+  const selectedCircle = d3.select("#circle-id-" + d.OBJECTID);
+  const circleParent = selectedCircle.select(function () {
+    return this.parentNode;
+  });
+  circleParent
+    .append("rect")
+    .attr("width", 120)
+    .attr("height", 30)
+    .attr("stroke", "black")
+    .attr("fill", "white")
+    .attr("class", "treeLabel")
+    .attr("id", (d) => "rect-id-" + d.OBJECTID)
+
+  circleParent
+    .append("text")
+    .text((d) => d.SPECIES_CO.split(",").reverse().join(" "))
+    .attr("dx", 15)
+    .attr("dy", 20)
+    .attr("class", "treeLabel")
+    .attr("id", (d) => "text-id-" + d.OBJECTID)
 }
 
 function zoomed({ transform }) {
@@ -115,5 +121,3 @@ function zoomed({ transform }) {
   // svg.attr("transform", transform);
   // svg.attr("stroke-width", 1 / transform.k);
 }
-
-// svg.append("text").text("This is text").attr("x", 20).attr("y", 20);

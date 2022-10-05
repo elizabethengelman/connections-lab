@@ -123,3 +123,25 @@ This is what it looks like with the filtered data for both:
 
 This is what it looks like with the full data for both:
 ![full for both](./full-data-for-both.png)
+
+
+
+
+in order to get the text to show up in the spot where i wanted, i started by displaying the labels for every dot on page load... and then just set the opacity to 0. this worked, however, when i went to include the rectangles i noticed that the mouse clicks werent reliable
+
+i think this is because depending on which order i added the cirlce, text, rect and the on click, sometimes the circled (or the clickable thing) would be below the labels
+
+i played around with adding the on click to the g's but with this, the clickable area because pretty large, and with all of the trees in there, it would make it really hard to be certain you were getting the one you expected
+
+then i leveraged adding ids and classes to my text, rect and cirlce omponents
+
+and by using the objectid from my tree data, i was able to select specific ids
+
+i also learned that i can get an elements parent. so i can get the circle's parent (g), and add the rect and text in there on click
+
+now i am trying to add the text and rect on click, and remove all of the previous ones before (by selecting the classname) before the rest of the on clikc happens
+
+
+the one piece that i think would have made this all easier was if i could get a div to display... not just a text, cirlce, rect, etc
+if i could have gotten a div to display, i could have hadd changed the background color with css
+but for some reason divs wouldn't display when appened to the g
