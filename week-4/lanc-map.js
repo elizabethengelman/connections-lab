@@ -1,6 +1,6 @@
 import trees from "./tree.json" assert { type: "json" };
 
-const margin = 100;
+const margin = 0;
 const width = screen.width;
 const height = screen.height;
 
@@ -52,13 +52,21 @@ treeGroups
   .append("circle")
   .attr("fill", function (d) {
     if (d.SPECIES_CO.includes("Pine")) {
-      return "#4f6611";
+      return "#01796F";
     } else if (d.SPECIES_CO.includes("Maple")) {
-      return "#4f6611";
+      return "#2E8B57";
     } else if (d.SPECIES_CO.includes("Oak")) {
-      return "#4f6611";
+      return "#50C878";
+    } else if (d.SPECIES_CO.includes("Plum")) {
+      return "#00755E";
+    } else if (d.SPECIES_CO.includes("Mulberry")) {
+      return "#29AB87";
+    } else if (d.SPECIES_CO.includes("Sycamore")) {
+      return "#3F704D";
+    } else if (d.SPECIES_CO.includes("Elm")) {
+      return "#708238";
     } else {
-      return "#224214";
+      return "#0B6623";
     }
   })
   .attr("r", 3)
@@ -94,18 +102,12 @@ function click(event, d) {
     .attr("y", -40)
     .attr("rx", 4)
     .attr("height", 30)
-    .attr("width", 120)
+    .attr("width", labelWidth(treeName))
     .attr("class", "treeLabel")
     .attr("id", "rect-id-" + d.OBJECTID)
     .lower();
 }
 
-//
-// const zoom = d3.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
-// svg.call(zoom);
-
-function zoomed({ transform }) {
-  // console.log(transform);
-  // svg.attr("transform", transform);
-  // svg.attr("stroke-width", 1 / transform.k);
+function labelWidth(label) {
+  return label.length * 10
 }
