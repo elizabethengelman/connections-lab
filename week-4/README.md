@@ -152,3 +152,7 @@ selection.raise!!
 https://riptutorial.com/d3-js/example/18029/svg--the-drawing-order
 
 https://observablehq.com/@rlesser/automatic-getbbox
+
+https://colorpalettes.net/color-palette-3959/
+https://stitchpalettes.com/palette/healthy-greens-spa0359/
+https://colorpalettes.net/color-palette-3808/

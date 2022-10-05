@@ -1,7 +1,6 @@
 import trees from "./tree.json" assert { type: "json" };
-// import trees from "./tree-subset.json" assert { type: "json" };
 
-const margin = 20;
+const margin = 100;
 const width = screen.width;
 const height = screen.height;
 
@@ -27,11 +26,7 @@ const cityProjection = d3.geoMercator().fitExtent(
 );
 const cityPathGenerator = d3.geoPath().projection(cityProjection);
 
-const svg = d3
-  .select("body")
-  .append("svg")
-  .attr("width", width)
-  .attr("height", height);
+const svg = d3.select("svg").attr("width", width).attr("height", height);
 
 // construct the path elements using the D3 data join
 svg
@@ -43,7 +38,7 @@ svg
   .append("path")
   .attr("d", cityPathGenerator)
   .attr("fill", "none")
-  .attr("stroke", "#000000")
+  .attr("stroke", "#632a00")
   .attr("stroke-width", "0.5");
 
 const treeElements = svg.selectAll("g").data(trees).join("g");
@@ -55,6 +50,17 @@ const treeGroups = treeElements.attr(
 
 treeGroups
   .append("circle")
+  .attr("fill", function (d) {
+    if (d.SPECIES_CO.includes("Pine")) {
+      return "#4f6611";
+    } else if (d.SPECIES_CO.includes("Maple")) {
+      return "#4f6611";
+    } else if (d.SPECIES_CO.includes("Oak")) {
+      return "#4f6611";
+    } else {
+      return "#224214";
+    }
+  })
   .attr("r", 3)
   .attr("id", (d) => "circle-id-" + d.OBJECTID)
   .on("click", click);

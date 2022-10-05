@@ -1,16 +1,24 @@
+html, body { margin:0; padding:0; overflow:hidden }
+svg { position:fixed; top:0; bottom:0; left:0; right:0 }
+svg {  top:0; bottom:0; left:0; right:0 }
 body {
 	font-family: "Verdana", sans-serif;
 	color: #0f5e2c;
+	background-color: #dbdbb2;
 	margin:0;
 	padding:0;
-	background: rgb(34,195,93);
-  background: linear-gradient(0deg, rgba(34,195,93,0.5382746848739496) 0%, rgba(34,193,195,0.6111038165266107) 100%);
+	/* background: rgb(34,195,93);
+  background: linear-gradient(0deg, rgba(34,195,93,0.5382746848739496) 0%, rgba(34,193,195,0.6111038165266107) 100%); */
 }
 
 h1{
+	font-family: "Sacramento", sans-serif;
 	text-align: center;
-	margin-top: 4%;
 	font-size: 4vw;
+	background-color: white;
+	padding: 10px;
+	margin-top: 30px;
+	
 }
 
 .container{ 
@@ -48,6 +56,10 @@ h1{
 
 .github-link{
 	color: #72abab;
+}
+
+circle{
+	/* opacity: 50%; */
 }
 
 .treeLabel {
