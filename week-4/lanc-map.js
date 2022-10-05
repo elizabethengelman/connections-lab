@@ -48,12 +48,29 @@ const svg = d3
 
 const treeElements = svg.selectAll("g").data(trees).join("g");
 const treeGroups = treeElements
-  .append("g")
   .attr(
     "transform",
     ({ LONGITUDE, LATITUDE }) =>
       `translate(${cityProjection([LONGITUDE, LATITUDE]).join(",")})`
-  );
+  )
+
+treeGroups
+  .append("rect")
+  .attr("width", 120)
+  .attr("height", 30)
+  .attr("stroke", "black")
+  .attr("fill", "white")
+  .attr("class", "treeLabel")
+  .attr("id", (d) => "rect-id-" + d.OBJECTID);
+
+treeGroups
+  .append("text")
+  .text((d) => d.SPECIES_CO.split(",").reverse().join(" "))
+  .attr("dx", 15)
+  .attr("dy", 20)
+  .attr("class", "treeLabel")
+  .attr("id", (d) => "text-id-" + d.OBJECTID);
+
 treeGroups.append("circle").attr("r", 11).on("click", click);
 
 // treeGroups
@@ -65,22 +82,11 @@ treeGroups.append("circle").attr("r", 11).on("click", click);
 //   .attr("class", "treeLabel")
 //   .attr("id", d => "rect-id-" + d.OBJECTID);
 
-treeGroups
-  .append("text")
-  .text(d => d.SPECIES_CO.split(",").reverse().join(" "))
-  .attr("dx", 15)
-  .attr("dy", 20)
-  .attr("class", "treeLabel")
-  .attr("id", d => "text-id-" + d.OBJECTID);
-
 // const zoom = d3.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
 // svg.call(zoom);
-svg.append("text").text("This is text").attr("x", 20).attr("y", 20);
 
 function click(event, d) {
-  console.log("Click!")
-  const x = event.x;
-  const y = event.y;
+  console.log("Click!");
   const treeName = d.SPECIES_CO.split(",").reverse().join(" ");
   resetLabelsToBeHidden();
   d3.select("#text-id-" + d.OBJECTID).style("opacity", 1);
@@ -101,7 +107,7 @@ function click(event, d) {
 
 function resetLabelsToBeHidden() {
   d3.selectAll(".treeLabel").style("opacity", 0);
-  console.log("Done resetting")
+  console.log("Done resetting");
 }
 
 function zoomed({ transform }) {
@@ -109,3 +115,5 @@ function zoomed({ transform }) {
   // svg.attr("transform", transform);
   // svg.attr("stroke-width", 1 / transform.k);
 }
+
+// svg.append("text").text("This is text").attr("x", 20).attr("y", 20);
