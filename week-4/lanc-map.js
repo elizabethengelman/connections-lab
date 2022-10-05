@@ -4,7 +4,6 @@ const margin = 0;
 const width = window.innerWidth;
 const height = window.innerHeight;
 
-// const svg = d3.select("svg").append("text").text("Loakding...")
 const svg = d3.select("svg").attr("width", width).attr("height", height);
 svg
   .append("text")
@@ -19,7 +18,6 @@ d3.json("./LancasterCountyRDCLINE202209.geojson").then(function (d) {
   renderMap(d);
 });
 
-// renderMap(streetData);
 function renderMap(streetData) {
   const lancasterOr = streetData.features.filter(
     (feature) =>
@@ -121,6 +119,8 @@ function renderMap(streetData) {
       .attr("class", "treeLabel")
       .attr("id", "rect-id-" + d.OBJECTID)
       .lower();
+
+    console.log(circleParent._groups[0][0]);
   }
 
   function labelWidth(label) {
