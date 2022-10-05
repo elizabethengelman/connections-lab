@@ -53,40 +53,11 @@ const treeGroups = treeElements.attr(
     `translate(${cityProjection([LONGITUDE, LATITUDE]).join(",")})`
 );
 
-// treeGroups
-//   .append("rect")
-//   .attr("width", 120)
-//   .attr("height", 30)
-//   .attr("stroke", "black")
-//   .attr("fill", "white")
-//   .attr("class", "treeLabel")
-//   .attr("id", (d) => "rect-id-" + d.OBJECTID);
-
-// treeGroups
-//   .append("text")
-//   .text((d) => d.SPECIES_CO.split(",").reverse().join(" "))
-//   .attr("dx", 15)
-//   .attr("dy", 20)
-//   .attr("class", "treeLabel")
-//   .attr("id", (d) => "text-id-" + d.OBJECTID);
-
 treeGroups
   .append("circle")
   .attr("r", 11)
   .attr("id", (d) => "circle-id-" + d.OBJECTID)
   .on("click", click);
-
-// treeGroups
-//   .append("rect")
-//   .attr("width", d => d.SPECIES_CO.length * 10)
-//   .attr("height", 30)
-//   .attr("stroke", "black")
-//   .attr("fill", "white")
-//   .attr("class", "treeLabel")
-//   .attr("id", d => "rect-id-" + d.OBJECTID);
-
-// const zoom = d3.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
-// svg.call(zoom);
 
 function resetPreviousSelection() {
   d3.selectAll(".treeLabel").remove()
@@ -98,6 +69,9 @@ function click(event, d) {
   const circleParent = selectedCircle.select(function () {
     return this.parentNode;
   });
+
+  circleParent.raise()
+
   circleParent
     .append("rect")
     .attr("width", 120)
@@ -115,6 +89,10 @@ function click(event, d) {
     .attr("class", "treeLabel")
     .attr("id", (d) => "text-id-" + d.OBJECTID)
 }
+
+//
+// const zoom = d3.zoom().scaleExtent([1, 8]).on("zoom", zoomed);
+// svg.call(zoom);
 
 function zoomed({ transform }) {
   // console.log(transform);
