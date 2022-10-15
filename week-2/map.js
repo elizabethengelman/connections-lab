@@ -1,7 +1,7 @@
 const width = 975;
 const height = 610;
-import data from "./data.json" assert { type: "json" };
-import us from "./us.json" assert { type: "json" };
+import data from "../data/data.json" assert { type: "json" };
+import us from "../data/us.json" assert { type: "json" };
 
 const path = d3.geoPath();
 const svg = d3.create("svg").attr("width", width).attr("height", height);

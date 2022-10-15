@@ -1,6 +1,6 @@
 window.addEventListener("load", function () {
   let trees;
-  fetch("TREE.csv")
+  fetch("../data/TREE.csv")
     .then(function (response) {
       return response.text();
     })

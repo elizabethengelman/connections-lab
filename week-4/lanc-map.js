@@ -1,10 +1,10 @@
-import trees from "./tree.json" assert { type: "json" };
+import trees from "../data/tree.json" assert { type: "json" };
 
 const margin = 100;
 const width = screen.width;
 const height = screen.height;
 
-const streetData = await d3.json("./LancasterCountyRDCLINE202209.geojson");
+const streetData = await d3.json("../data/LancasterCountyRDCLINE202209.geojson");
 
 const lancasterOr = streetData.features.filter(
   (feature) =>
