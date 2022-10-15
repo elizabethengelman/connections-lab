@@ -1,9 +1,10 @@
-html, body { margin:0; padding:0; }
-/* svg { position:fixed; top:0; bottom:0; left:0; right:0 } */
+html, body { margin:0; padding:0; overflow:hidden }
+svg { position:fixed; top:0; bottom:0; left:0; right:0 }
+svg {  top:0; bottom:0; left:0; right:0 }
 body {
 	font-family: "Verdana", sans-serif;
 	color: #0f5e2c;
-	background-color: #faefaf;
+	background-color: #dbdbb2;
 	margin:0;
 	padding:0;
 	/* background: rgb(34,195,93);
@@ -14,24 +15,10 @@ h1{
 	font-family: "Sacramento", sans-serif;
 	text-align: center;
 	font-size: 4vw;
-	background-color: #faefaf;
+	background-color: white;
 	padding: 10px;
-	margin-top: 0px;
-	margin-bottom: 0px;
-}
-
-h2{
-	text-align: center;
-	background-color: #faefaf;
-	margin-top: 0;
-	margin-bottom: 0;
-	padding-bottom: 10px;
-}
-
-#loading {
-	font-family: "Sacramento", sans-serif;
-	font-size: 3vw;
-	text-align: center;
+	margin-top: 30px;
+	
 }
 
 .container{ 
@@ -77,5 +64,4 @@ circle{
 
 .treeLabel {
 	/* opacity: 0; */
-	padding: 10px
 }
