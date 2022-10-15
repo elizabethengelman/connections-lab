@@ -2,7 +2,7 @@ const margin = 20;
 const width = 975;
 const height = 610;
 
-d3.json("./lancaster2.geojson")
+d3.json("../data/lancaster2.geojson")
   .then(function (data) {
     const streets = data
     const cityProjection = d3.geoMercator().fitExtent([[margin, margin], [width - margin, height - margin]], streets)

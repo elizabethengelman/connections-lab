@@ -1,4 +1,4 @@
-import trees from "./tree.json" assert { type: "json" };
+import trees from "../data/tree.json" assert { type: "json" };
 
 const margin = 0;
 const width = window.innerWidth;
@@ -13,7 +13,7 @@ svg
   .attr("y", "20%")
   .attr("id", "loading");
 
-d3.json("./LancasterCountyRDCLINE202209.geojson").then(function (d) {
+d3.json("../data/LancasterCountyRDCLINE202209.geojson").then(function (d) {
   d3.select("#loading").remove();
   renderMap(d);
 });

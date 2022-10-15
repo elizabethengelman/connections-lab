@@ -2,7 +2,7 @@ const margin = 20;
 const width = 975;
 const height = 610;
 
-d3.json("./lancaster2.geojson").then(function (data) {
+d3.json("../data/lancaster2.geojson").then(function (data) {
   const streets = data.features;
   const street = streets[0];
   const projection = d3.geoMercator().fitExtent(
